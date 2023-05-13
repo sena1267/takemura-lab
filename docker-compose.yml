@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+        POSTGRES_PASSWORD: t@kemur@
+        TZ: "Asia/Tokyo"
+    ports:
+        - 5432:5432
+    volumes:
+        - db-store:/var/lib/postgresql/data
+        - ./script:/docker-entrypoint-initdb.d
+    
+  backend:
+    build: ./backend
+    command: poetry run uvicorn api.main:app --host 0.0.0.0 --reload
+    volumes:
+        - ./backend:/backend
+    ports:
+        - "8000:8000"
+    
+  frontend:
+    build: ./frontend
+    command: npm start
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+
+volumes:
+    db-store:
