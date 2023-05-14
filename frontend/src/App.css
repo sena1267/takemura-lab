@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Poltawski+Nowy:ital@1&display=swap');
+
+header{
+    position: relative;
+    height: 100vh;
+}
+.textarea{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color: white;
+}
+header h1{
+    font-family: "Poltawski Nowy";
+    text-shadow: 0 0 10px #333;
+    letter-spacing: 6px;
+}
+.image-area{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+}
+.image{
+    position: absolute;
+    z-index:-1;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 177.77777778vh;
+    height: 56.25vw;
+    min-width: 100%;
+    min-height: 100%;
+}
+main{
+    background: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button {
+    background: rgb(141, 254, 139);
+    color: rgb(18, 17, 22);
+    border-radius: 5px;
+    padding: 18px 32px;
+    font-family:"Noto Sans JP";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button:hover {
+    background: #377b3f;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+main section{
+    height: 600px;
+    padding: 30px;
 }
