@@ -1,6 +1,6 @@
 import "./Loginform.css";
 import React,{ useState } from "react";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Loginform = () => {
     //ユーザー情報を格納するオブジェクトを生成する
@@ -11,6 +11,8 @@ const Loginform = () => {
     const [formErrors, setFormErrors] = useState({})
     //ログインボタンが押されたかどうかを判別するオブジェクト
     const [isSubmit, setIsSubmit] = useState(false);
+
+    const navigate = useNavigate();
     //フォームに入力された値を取り出す関数
     const handleChange = (e) => {
         const {name,value} = e.target;
@@ -35,12 +37,10 @@ const Loginform = () => {
         };
         return errors;
     };
-
     return (
         <div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.5 }}>
-            <div class="card">
-            <div class="content">
+            <div class="card-login">
+            <div class="content-login">
                 <h2>T-Lab</h2>
                 <h3>LOGIN</h3>
                 <div class="usernameform">
@@ -53,10 +53,10 @@ const Loginform = () => {
                     <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)}/>
                 </div>
                 <p class="errorMsg">{formErrors.password}</p>
-                <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button>
+                {/* <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button> */}
+                <button onClick={()=>navigate('/dashboard/1')}>login</button>
             </div>
             </div>
-            </motion.div>
             </div>
     );
 };
