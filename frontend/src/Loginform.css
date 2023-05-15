@@ -34,7 +34,7 @@ body::after {
     z-index: -1;
 }
 
-.card {
+.card-login {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
     width: 380px;
@@ -50,19 +50,19 @@ body::after {
     overflow: hidden;
 }
 
-.card .content{
+.card-login .content-login{
     position: relative;
     padding: 20px;
     transform: translateY(200px);
     opacity: 0;
     transition: 0.5s;
 }
-.card:hover .content {
+.card-login:hover .content-login {
     transform:translateY(0);
     opacity: 1;
 }
 
-.card .content h2 {
+.card-login .content-login h2 {
     position: absolute;
     top:-80px;
     right: 30px;
@@ -70,18 +70,18 @@ body::after {
     color: rgba(255, 255, 255, 0.1);
 }
 
-.card .content h3{
+.card-login .content-login h3{
     color: white;
     font-size: 1.8rem;
 }
 
-.card .content p{
+.card-login .content-login p{
     font-size: 1rem;
     color: white;
     font-weight: 300;
 }
 
-.card .content button{
+.card-login .content-login button{
     text-decoration: none;
     display: inline-block;
     padding: 8px 20px;
@@ -93,35 +93,35 @@ body::after {
     box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
 }
 
-.card .content .usernameform {
+.card-login .content-login .usernameform {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.card .content .passwordform {
+.card-login .content-login .passwordform {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.card .content .usernameform label{
+.card-login .content-login .usernameform label{
     padding:10%;
     color:white;
 }
 
-.card .content .passwordform label{
+.card-login .content-login .passwordform label{
     padding:10%;
     color: white;
 }
 
-.card .content .usernameform input{
+.card-login .content-login .usernameform input{
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
 }
-.card .content .passwordform input{
+.card-login .content-login .passwordform input{
     display: flex;
     align-items: center;
     justify-content: center;

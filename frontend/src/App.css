@@ -17,6 +17,9 @@ header h1{
     font-family: "Poltawski Nowy";
     text-shadow: 0 0 10px #333;
     letter-spacing: 6px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 10px;
 }
 .image-area{
     position: fixed;
@@ -26,7 +29,6 @@ header h1{
     left: 0;
     right: 0;
     overflow: hidden;
-
 }
 .image{
     position: absolute;
