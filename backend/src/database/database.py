@@ -1,7 +1,7 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
 POSTGRES_USER = os.environ.get('POSTGRES_USER', 'fastapi')
 POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'password')
@@ -20,8 +20,10 @@ Base = declarative_base()
 
 
 def get_db():
-    db = SessionLocal()
+    db: Session = SessionLocal()
     try:
         yield db
+    except Exception:
+        db.rollback()
     finally:
-        db.close
+        db.close()
