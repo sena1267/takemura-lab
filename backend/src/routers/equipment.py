@@ -1,10 +1,10 @@
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+
 from cruds import equipment as equipment_cruds
 from cruds import user as user_cruds
 from database.database import get_db
 from schemas.equipment import Equipment, EquipmentCreate, EquipmentUpdate
-
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/equipment", tags=["equipment"])
 
