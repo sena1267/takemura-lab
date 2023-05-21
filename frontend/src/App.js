@@ -1,21 +1,21 @@
 import React from "react";
 //URLを定義する場所を指定するためのインポート
-import { BrowserRouter, Routes, Route, Link, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useParams } from "react-router-dom";
 import './App.css';
 import Loginform from "./Loginform"
-import Dashboardview from "./Dashboardview";
+import Dashboardroot from "./Dashboardroot";
 
 const App = () => {
   return (
-      //BrouserRouterの中にURLを定義します。
-        <div>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route path="/dashboard/:id" element={<Dashboard />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </div>
+    //BrouserRouterの中にURLを定義します。
+    <div>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </div>
   );
 }
 //Appをエクスポートします。
@@ -25,18 +25,18 @@ export default App;
 const Home = () => {
   return (
     <>
-    <div class="container text-center mt-5">
-    <header>
-      <div class="textarea">
-        <h1 class="wow animate__animated animate__fadeInUp">Takemura Lab</h1>
-        <p>　</p>
-        <p><Link to="/login" class="button" role="button">ログイン</Link></p>
+      <div class="container text-center mt-5">
+        <header>
+          <div class="textarea">
+            <h1 class="wow animate__animated animate__fadeInUp">Takemura Lab</h1>
+            <p>　</p>
+            <p><Link to="/login" class="button" role="button">ログイン</Link></p>
+          </div>
+          <div class="image-area">
+            <img class="image" src="./img/home_background1.jpg" alt='武村研究室のログイン画面の背景画像' />
+          </div>
+        </header>
       </div>
-      <div class="image-area">
-        <img class="image" src="./img/home_background1.jpg" />
-      </div>
-    </header>
-    </div>
     </>
   );
 };
@@ -57,7 +57,7 @@ const Dashboard = () => {
   return (
     <div>
       {/* dashboardにuser_idを渡す */}
-    <Dashboardview user_id={user_id} />
+      <Dashboardroot user_id={user_id} />
     </div>
   );
 

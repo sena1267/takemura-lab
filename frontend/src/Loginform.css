@@ -7,7 +7,7 @@
     font-family: "Poltawski Nowy"
 }
 
-body {
+body .log {
     min-height: 100vh;
     background-color: #03c3d8;
     display: flex;
@@ -33,7 +33,7 @@ body::before {
     z-index: -1;
 }
 
-body::after {
+/* body::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -41,7 +41,7 @@ body::after {
     background-color: linear-gradient(#7555c6, #187d54);
     clip-path: circle(60% at 15% 27%);
     z-index: -1;
-}
+} */
 
 .card-login {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
