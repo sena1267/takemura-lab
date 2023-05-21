@@ -38,26 +38,28 @@ const Loginform = () => {
         return errors;
     };
     return (
-        <div class="loginform-background">
-            <div class="card-login">
-                <div class="content-login">
-                    <h2>T-Lab</h2>
-                    <h3>LOGIN</h3>
-                    <div class="usernameform">
-                        <label>username</label>
-                        <input type="text" placeholder="username" name="username" onChange={(e) => handleChange(e)} />
+        <div class="log">
+            <div class="loginform-background">
+                <div class="card-login">
+                    <div class="content-login">
+                        <h2>T-Lab</h2>
+                        <h3>LOGIN</h3>
+                        <div class="usernameform">
+                            <label>username</label>
+                            <input type="text" placeholder="username" name="username" onChange={(e) => handleChange(e)} />
+                        </div>
+                        <p>{formErrors.username}</p>
+                        <div class="passwordform">
+                            <label>password</label>
+                            <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)} />
+                        </div>
+                        <p class="errorMsg">{formErrors.password}</p>
+                        {/* <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button> */}
+                        <button onClick={() => navigate('/dashboard/1')}>login</button>
                     </div>
-                    <p>{formErrors.username}</p>
-                    <div class="passwordform">
-                        <label>password</label>
-                        <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)} />
-                    </div>
-                    <p class="errorMsg">{formErrors.password}</p>
-                    {/* <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button> */}
-                    <button onClick={() => navigate('/dashboard/1')}>login</button>
                 </div>
-            </div>
-        </div >
+            </div >
+        </div>
     );
 };
 
