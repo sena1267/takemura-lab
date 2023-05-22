@@ -1,7 +1,7 @@
 {
   "[python]": {
     // ブログの都合でpを大文字としていますが正しくは小文字です。
-    "editor.defaultFormatter": "ms-python.autopep8", // ←これが必要!!!!!
+    "editor.defaultFormatter": "ms-python.black-formatter", // ←これが必要!!!!!
     "editor.formatOnSave": true
   },
   "python.linting.enabled": true,
@@ -10,6 +10,9 @@
   "python.linting.flake8Enabled": true,
   // "python.linting.flake8Args": ["--config", "./venv/bin/flake8"],
   "python.formatting.provider": "none",
-  "python.linting.flake8Args": ["--max-line-length", "100", "--ignore", "E203"],
-  "editor.formatOnSave": true
+  "python.linting.flake8Args": ["--line-length", "88", "--ignore", "E203"],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }
