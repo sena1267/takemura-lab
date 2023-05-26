@@ -4,8 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker
 
 POSTGRES_USER = os.environ.get('POSTGRES_USER', 'fastapi')
-POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'password')
-POSTGRES_SERVER = os.environ.get('POSTGRES_SERVER', '127.0.0.1')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'takemuraapp1212')
+POSTGRES_SERVER = os.environ.get('POSTGRES_SERVER', 'postgres')
 POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
 POSTGRES_DB = os.environ.get('POSTGRES_DB', 'fastapi')
 

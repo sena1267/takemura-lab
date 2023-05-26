@@ -1,27 +1,37 @@
 version: '3'
 services:
   db:
-    image: postgres:latest
+    image: postgres:15.3-alpine
     container_name: postgres
-    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-        POSTGRES_PASSWORD: t@kemur@
-        TZ: "Asia/Tokyo"
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
     ports:
-        - 5432:5432
-    volumes:
-        - db-store:/var/lib/postgresql/data
-        - ./script:/docker-entrypoint-initdb.d
-    
+      - 5432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
   backend:
-    build: ./backend
-    command: poetry run uvicorn api.main:app --host 0.0.0.0 --reload
+    build: ./backend/src
+    container_name: fastapi
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
     volumes:
-        - ./backend:/takemura-lab/backend
+      - ./backend:/takemura-lab/backend
     ports:
-        - "8000:8000"
+      - 8080:8000
     tty: true
-    
+
   frontend:
     build: ./frontend
     command: npm start
@@ -32,4 +42,4 @@ services:
     tty: true
 
 volumes:
-    db-store:
+  postgres_data:
