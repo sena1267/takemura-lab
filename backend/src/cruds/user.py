@@ -1,10 +1,12 @@
 import models
 from schemas.user import User, UserCreate
 from sqlalchemy.orm import Session
+from sqlalchemy import select, update, delete
 
 
-def get_all_users(db: Session):
-    users = db.query(models.User).all()
+def get_all_users(db: Session) -> list[User]:
+
+    users = db.scalars(select(models.User)).all()
 
     return list(map(User.from_orm, users))
 

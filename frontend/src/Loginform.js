@@ -53,7 +53,7 @@ const Loginform = () => {
                             <label>password</label>
                             <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)} />
                         </div>
-                        <p class="errorMsg">{formErrors.password}</p>
+                        <p className="errorMsg">{formErrors.password}</p>
                         {/* <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button> */}
                         <button onClick={() => navigate('/dashboard/1')}>login</button>
                     </div>

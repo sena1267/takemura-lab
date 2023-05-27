@@ -1,7 +1,7 @@
 from cruds import user as user_crud
 from database.database import get_db
 from fastapi import APIRouter, Depends, HTTPException
-from schemas.user import UserCreate
+from schemas.user import UserCreate, User
 from sqlalchemy.orm import Session
 
 
@@ -11,10 +11,14 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+@router.get("/", response_model=list[User])
 def get_users(db: Session = Depends(get_db)):
-    return user_crud.get_all_users(db)
+    return user_crud.get_all_users(db=db)
 
+# useridからユーザーデータを取得する
+@router.get("/get_user/{user_id}")
+def get_user(user_id: int, db: Session = Depends(get_db)):
+    return user_crud.get_user_by_id(user_id, db)
 
 @router.post("/")
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
