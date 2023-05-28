@@ -27,3 +27,5 @@ RUN pip install sqlalchemy==2.0.13
 RUN pip install starlette==0.26.1
 RUN pip install typing-extensions==4.5.0
 RUN pip install uvicorn==0.22.0
+
+CMD ["uvicorn", "main:app","--reload","--host","0.0.0.0","--port","8080"]

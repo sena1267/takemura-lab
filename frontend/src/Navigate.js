@@ -24,61 +24,51 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }
         return (
             <>
                 {/* <!-- Sidebar --> */}
-                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                     {/* <!-- Sidebar - Brand --> */}
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <i class="fas fa-laugh-wink"></i>
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                        <div className="sidebar-brand-icon rotate-n-15">
+                            <i className="fas fa-laugh-wink"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">Takemura Lab</div>
+                        <div className="sidebar-brand-text mx-3">Takemura Lab</div>
                     </a>
 
                     {/* <!-- Divider --> */}
-                    <hr class="sidebar-divider my-0" />
+                    <hr className="sidebar-divider my-0" />
 
                     {/* <!-- Nav Item - Dashboard --> */}
-                    <li class="nav-item active">
-                        <a class="nav-link">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <li className="nav-item active">
+                        <a className="nav-link">
+                            <i className="fas fa-fw fa-tachometer-alt"></i>
                             <span>Dashboard</span></a>
                     </li>
 
                     {/* <!-- Divider --> */}
-                    <hr class="sidebar-divider" />
+                    <hr className="sidebar-divider" />
 
                     {/* <!-- Heading --> */}
-                    <div class="sidebar-heading">
+                    <div className="sidebar-heading">
                         menu
                     </div>
-
-                    {/* <!-- Nav Item - Charts --> */}
-                    {/* <li class="nav-item">
-                            <a class="nav-link" href="charts.html">
-                                <i class="fas fa-fw fa-home"></i>
-                                <span>home</span></a>
-                        </li> */}
                     {/* ホーム画面を呼び出すか備品管理画面を呼び出すかの管理を行うタブバー */}
-                    <div class="font-japanese">
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={trueHome}>
-                                <i class="fas fa-fw fa-home"></i>
+                    <div className="font-japanese">
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={trueHome}>
+                                <i className="fas fa-fw fa-home"></i>
                                 <span>ホーム</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={falseHome}>
-                                <i class="fas fa-fw fa-list"></i>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={falseHome}>
+                                <i className="fas fa-fw fa-list"></i>
                                 <span>備品管理</span></a>
                         </li>
                     </div>
                     {/* <!-- Divider --> */}
-                    <hr class="sidebar-divider" />
+                    <hr className="sidebar-divider" />
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
-                    {/* <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle" onClick={hideNavigate}></button>
-                    </div> */}
-                    <div class="text-center d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle" onClick={hideNavigate}></button>
+                    <div className="text-center d-md-inline">
+                        <button className="rounded-circle border-0" id="sidebarToggle" onClick={hideNavigate}></button>
                     </div>
                 </ul>
                 {/* <!-- End of Sidebar --> */}

@@ -12,8 +12,8 @@ const Tab = ({ showNavigateValues, showNavigate }) => {
     } else {
         return (
             <>
-                <button id="" class="btn rounded-circle mr-3" onClick={showNavigate}>
-                    <i class="fa fa-bars"></i>
+                <button id="" className="btn rounded-circle mr-3" onClick={showNavigate}>
+                    <i className="fa fa-bars"></i>
                 </button>
             </>
         );
