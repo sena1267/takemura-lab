@@ -7,7 +7,7 @@ const Members = ({ baseurl }) => {
 
     const [allmembersValues, setallmembersValues] = useState([]);
 
-    const fetchallmember = `/user`;
+    let fetchallmember = `/user`;
 
     useEffect(() => {
         async function fetchAllMembers() {

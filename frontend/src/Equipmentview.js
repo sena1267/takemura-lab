@@ -1,6 +1,20 @@
 import React from "react";
+import Equipmentviewswitch from "./Equipmentviewswitch";
+import "./Equipmentlistcontent.css";
+import { useState } from "react";
 
-const Equipmentview = () => {
+
+const Equipmentview = ({ user_id, baseurl }) => {
+    const [switchview, setswitchview] = useState(true);
+
+    const toggleswitchview = () => {
+        if (switchview == true) {
+            setswitchview(false);
+        } else {
+            setswitchview(true);
+        }
+    };
+
     return (
         <>
             <div className="container-fluid">
@@ -96,12 +110,12 @@ const Equipmentview = () => {
                             <div
                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 className="m-0 font-weight-bold text-primary font-japanese">研究室内備品リスト</h6>
-
+                                <button type="button" class="btn btn-primary font-japanese" onClick={toggleswitchview}>備品追加</button>
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
-                                <div className="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                <div className="chart-area scroll">
+                                    <Equipmentviewswitch switchview={switchview} user_id={user_id} baseurl={baseurl} />
                                 </div>
                             </div>
                         </div>
