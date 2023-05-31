@@ -23,8 +23,8 @@ const Equipmentlistcontent = ({ user_id, baseurl }) => {
         <>
             <table class='font-japanese'>
                 <tr>
-                    <th>NAME</th>
-                    <th>PRICE</th>
+                    <th>備品名</th>
+                    <th>コスト</th>
                 </tr>
                 {equipmentsValues.map((equipment, index) =>
                     <Equipment key={index} details={equipment} />

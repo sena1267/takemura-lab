@@ -2,7 +2,7 @@ import React from "react";
 import Equipmentviewswitch from "./Equipmentviewswitch";
 import "./Equipmentlistcontent.css";
 import { useState } from "react";
-
+import Lackequipmentlist from './Lackequipmentlist';
 
 const Equipmentview = ({ user_id, baseurl }) => {
     const [switchview, setswitchview] = useState(true);
@@ -131,7 +131,8 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
-                                <div className="chart-pie pt-4 pb-2">
+                                <div className="chart-pie pt-4 pb-2 scroll">
+                                    <Lackequipmentlist user_id={user_id} baseurl={baseurl} />
                                 </div>
                             </div>
                         </div>
