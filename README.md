@@ -9,7 +9,7 @@ docker-compose up -d
 
 frontend
 ```
-http://localhost:3000/dashboard/1
+http://localhost:3000/
 ```
 backend
 ```
