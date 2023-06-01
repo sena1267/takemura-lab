@@ -4,8 +4,8 @@ const Equipment = ({ details }) => {
     return (
         <>
             <tr>
-                <th>{details.name}</th>
-                <th>{details.price}</th>
+                <td>{details.name}</td>
+                <td>{details.price}</td>
             </tr>
         </>
     );

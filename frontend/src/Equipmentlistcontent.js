@@ -7,28 +7,33 @@ import './Equipmentlistcontent.css';
 const Equipmentlistcontent = ({ user_id, baseurl }) => {
     const [equipmentsValues, setequipmentValues] = useState([]);
 
-    let fetchequipment = `equipment/`;
+    let fetchequipment = `/equipment`;
 
     useEffect(() => {
         async function fetchequipmentdata() {
+            console.log(baseurl + fetchequipment)
             const res = await axios.get(baseurl + fetchequipment);
             if (res.data && Array.isArray(res.data)) {
                 setequipmentValues(res.data)
             }
-            fetchequipmentdata();
-        }
+        };
+        fetchequipmentdata();
     }, []);
 
     return (
         <>
-            <table class='font-japanese'>
-                <tr>
-                    <th>備品名</th>
-                    <th>コスト</th>
-                </tr>
-                {equipmentsValues.map((equipment, index) =>
-                    <Equipment key={index} details={equipment} />
-                )}
+            <table className='font-japanese'>
+                <thead>
+                    <tr>
+                        <th>備品名</th>
+                        <th>コスト</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {equipmentsValues.map((equipment, index) =>
+                        <Equipment key={index} details={equipment} />
+                    )}
+                </tbody>
             </table>
         </>
     );
