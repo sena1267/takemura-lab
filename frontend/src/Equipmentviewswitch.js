@@ -1,7 +1,53 @@
 import React from "react";
 import Equipmentlistcontent from './Equipmentlistcontent';
+import './Equipmentlistcontent.css';
+import { useState } from "react";
+import axios from 'axios';
 
 const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
+    const initialValues = { bihinmei: "", cost: 0, buyer: 0, bought_data: "" };
+    const [formValues, setFormValues] = useState(initialValues);
+    const [isSubmit, setIsSubmit] = useState(false);
+    const [message, setMessage] = useState('');
+    const state = {
+        curDT: new Date().toISOString(),
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmit(true);
+        postEquipmentdata(formValues);
+    };
+
+    const postEquipmentdata = (values) => {
+        if (values.bihinmei && values.cost && values.buyer) {
+            const postdata = { "name": values.bihinmei, "price": parseInt(values.cost), "buyer_id": parseInt(values.buyer), "bought_date": state.curDT };
+            console.log(postdata);
+            console.log(`${baseurl}/equipment/`);
+            axios.post(`${baseurl}/equipment/`, postdata).then((response) => {
+                console.log(response.data);
+                setMessage("投稿が完了しました");
+            })
+                .catch((error) => {
+                    if (error.response) {
+                        console(error.response.data);
+                        message = 'サーバーからのエラー：' + error.response.data;
+                    } else {
+                        message = 'エラー：' + error.message;
+                    };
+                })
+        } else {
+            setMessage('入力が完了していません');
+        }
+
+    };
+
     if (switchview == true) {
         return (
             <>
@@ -11,6 +57,14 @@ const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
     } else {
         return (
             <>
+                <form action=''>
+                    <h3 className='text-primary'>備品追加フォーム</h3>
+                    <input type='text' placeholder='備品名' name='bihinmei' required onChange={(e) => handleChange(e)}></input>
+                    <input type='number' placeholder='コスト' name='cost' required onChange={(e) => handleChange(e)}></input>
+                    <input type='number' placeholder='購入者' name='buyer' required onChange={(e) => handleChange(e)}></input>
+                    <p className='formmessage'>{message}</p>
+                    <button className="contentbutton" onClick={(e) => handleSubmit(e)}>add</button>
+                </form>
             </>
         );
     };

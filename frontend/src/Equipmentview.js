@@ -110,7 +110,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             <div
                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 className="m-0 font-weight-bold text-primary font-japanese">研究室内備品リスト</h6>
-                                <button type="button" class="btn btn-primary font-japanese" onClick={toggleswitchview}>備品追加</button>
+                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>画面切り替え</button>
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
