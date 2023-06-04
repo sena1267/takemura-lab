@@ -32,9 +32,9 @@ services:
 
   frontend:
     build: ./frontend
-    command: npm start
     volumes:
       - ./frontend:/takemura-lab/frontend
+      - /takemura-lab/frontend/node_modules
     ports:
       - "3000:3000"
     tty: true
