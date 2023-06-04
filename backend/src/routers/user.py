@@ -1,8 +1,10 @@
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+
 from cruds import user as user_crud
 from database.database import get_db
-from fastapi import APIRouter, Depends, HTTPException
 from schemas.user import UserCreate, User
-from sqlalchemy.orm import Session
+from core.auth import get_current_user
 
 
 router = APIRouter(
@@ -15,14 +17,20 @@ router = APIRouter(
 def get_users(db: Session = Depends(get_db)):
     return user_crud.get_all_users(db=db)
 
-# useridからユーザーデータを取得する
+
 @router.get("/get_user/{user_id}")
 def get_user(user_id: int, db: Session = Depends(get_db)):
     return user_crud.get_user_by_id(user_id, db)
 
-@router.post("/")
+
+@router.get("/me", response_model=User)
+def get_user_me(user: User = Depends(get_current_user)):
+    return user
+
+
+@router.post("/",)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    user_in_db = user_crud.get_user_by_name(user.name, db)
+    user_in_db = user_crud.get_user_by_username(user.name, db)
     if user_in_db:
         raise HTTPException(
             status_code=400,
