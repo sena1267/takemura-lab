@@ -4,7 +4,7 @@ import axios from "axios";
 import Equipment from "./Equipment";
 import './Equipmentlistcontent.css';
 
-const Equipmentlistcontent = ({ user_id, baseurl }) => {
+const Equipmentlistcontent = ({ user_id, baseurl, setisdetailvalue, setdetailevalue }) => {
     const [equipmentsValues, setequipmentValues] = useState([]);
 
     let fetchequipment = `/equipment`;
@@ -31,7 +31,7 @@ const Equipmentlistcontent = ({ user_id, baseurl }) => {
                 </thead>
                 <tbody>
                     {equipmentsValues.map((equipment, index) =>
-                        <Equipment key={index} details={equipment} />
+                        <Equipment key={index} details={equipment} setisdetailvalue={setisdetailvalue} setdetailevalue={setdetailevalue} />
                     )}
                 </tbody>
             </table>

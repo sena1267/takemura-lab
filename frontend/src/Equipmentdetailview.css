@@ -1,0 +1,20 @@
+.flexbox {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30vw;
+}
+
+.listbutton {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    padding: 5%;
+}
+
+.deletebutton {
+    margin-top: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    padding: 5%;
+}

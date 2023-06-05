@@ -3,12 +3,17 @@ import Equipmentlistcontent from './Equipmentlistcontent';
 import './Equipmentlistcontent.css';
 import { useState } from "react";
 import axios from 'axios';
+import Equipmentdetailview from './Equipmentdetailview';
 
 const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
     const initialValues = { bihinmei: "", cost: 0, buyer: 0, bought_data: "" };
     const [formValues, setFormValues] = useState(initialValues);
     const [isSubmit, setIsSubmit] = useState(false);
     const [message, setMessage] = useState('');
+    // 備品の詳細情報の表示を制御するためのスイッチ
+    const [isdetailValue, setisdetailvalue] = useState(false);
+    // 商品の詳細情報を管理するjson形式の状態変数
+    const [detailvalue, setdetailevalue] = useState({ 'id': 0, 'name': '', 'price': 0, 'buyer_id': 0, 'bought_date': '' });
     const state = {
         curDT: new Date().toISOString(),
     }
@@ -49,11 +54,19 @@ const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
     };
 
     if (switchview == true) {
-        return (
-            <>
-                <Equipmentlistcontent user_id={user_id} baseurl={baseurl} />
-            </>
-        );
+        if (isdetailValue == false) {
+            return (
+                <>
+                    <Equipmentlistcontent user_id={user_id} baseurl={baseurl} setisdetailvalue={setisdetailvalue} setdetailevalue={setdetailevalue} />
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <Equipmentdetailview baseurl={baseurl} isdetailValue={isdetailValue} setisdetailvalue={setisdetailvalue} setdetailevalue={setdetailevalue} detailvalue={detailvalue} />
+                </>
+            )
+        }
     } else {
         return (
             <>
