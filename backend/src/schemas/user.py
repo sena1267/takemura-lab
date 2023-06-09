@@ -14,7 +14,7 @@ class User(BaseModel):
 
 class UserCreate(BaseModel):
     name: str
-    password_hash: str
+    password: str
     icon: str
     birthday: int
     is_admin: bool
