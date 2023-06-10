@@ -9,7 +9,7 @@
 
 body .log {
     min-height: 100vh;
-    background-color: #b4f650;
+    background-color: #e7ffc4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +17,7 @@ body .log {
 
 .loginform-background {
     min-height: 100vh;
-    background-color: #184d75;
+    background-color: #e7ffc4;
     display: flex;
     align-items: center;
     justify-content: center;

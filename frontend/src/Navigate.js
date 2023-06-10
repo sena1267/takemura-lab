@@ -3,6 +3,7 @@ import './css/sb-admin-2.css';
 import './css/sb-admin-2.min.css';
 import './vendor/fontawesome-free/css/all.min.css';
 import './Dashboardview.css';
+import { useNavigate } from "react-router-dom";
 
 const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }) => {
     // この関数が呼び出されるとホーム画面が呼び出される
@@ -18,6 +19,13 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }
 
     const hideNavigate = () => {
         setshowNavigateValues(false);
+    };
+    const navigate = useNavigate();
+
+    const movepage = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('T-lab_username');
+        navigate('/login')
     };
 
     if (showNavigateValues === true) {
@@ -62,6 +70,11 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }
                             <a className="nav-link" onClick={falseHome}>
                                 <i className="fas fa-fw fa-list"></i>
                                 <span>備品管理</span></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={movepage}>
+                                <i className="fas fa-solid fa-user"></i>
+                                <span>ログアウト</span></a>
                         </li>
                     </div>
                     {/* <!-- Divider --> */}

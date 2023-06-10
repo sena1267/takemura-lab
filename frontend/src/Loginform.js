@@ -93,6 +93,8 @@ const Loginform = () => {
                 setIsLoggedIn(false);
 
             }
+        } else {
+            setFormValues(initialValues);
         };
     }
 
@@ -130,12 +132,12 @@ const Loginform = () => {
                         <h3>LOGIN</h3>
                         <div class="usernameform">
                             <label>username</label>
-                            <input type="text" placeholder="username" name="username" onChange={(e) => handleChange(e)} />
+                            <input type="text" placeholder="username" name="username" value={formValues.username} onChange={(e) => handleChange(e)} />
                         </div>
                         <p>{formErrors.username}</p>
                         <div class="passwordform">
                             <label>password</label>
-                            <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)} />
+                            <input type="text" placeholder="password" name="password" value={formValues.password} onChange={(e) => handleChange(e)} />
                         </div>
                         <p className="errorMsg">{formErrors.password}</p>
                         <button onClick={(e) => handleSubmit(e)}>login</button>
