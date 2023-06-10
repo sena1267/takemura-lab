@@ -77,7 +77,7 @@ const Loginform = () => {
         if (Object.keys(formErrors).length === 0) {
             const token = await login(formValues.username, formValues.password);
             if (token != "") {
-                saveToken(token);
+                saveToken(token, formValues.username);
                 setIsLoggedIn(true);
                 getUserId(formValues.username).then(id => {
                     if (id) {
