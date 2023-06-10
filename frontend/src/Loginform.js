@@ -21,21 +21,27 @@ const Loginform = () => {
 
     //ログイン情報をサーバーに送信し、アクセストークンを取得する関数
     async function login(username, password) {
-        const response = await axios.post('http://127.0.0.1:8080/token', qs.stringify({
-            "username": username,
-            "password": password,
-        }), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
-        const { access_token } = response.data;
-        return access_token;
+        try {
+            const response = await axios.post('http://127.0.0.1:8080/token', qs.stringify({
+                "username": username,
+                "password": password,
+            }), {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const { access_token } = response.data;
+            return access_token;
+        } catch (error) {
+            console.error(error);  // エラーの詳細をログに出力
+            return "";  // エラーが発生した場合は空文字を返す
+        }
     };
 
     //アクセストークンをローカルストレージに保存する関数
-    function saveToken(token) {
+    function saveToken(token, username) {
         localStorage.setItem('access_token', token);
+        localStorage.setItem('T-lab_username', username);
     }
 
     async function getUserId(username) {
@@ -70,16 +76,23 @@ const Loginform = () => {
         //エラーメッセージがなければログイン情報を発信する。
         if (Object.keys(formErrors).length === 0) {
             const token = await login(formValues.username, formValues.password);
-            saveToken(token);
-            setIsLoggedIn(true);
-            getUserId(formValues.username).then(id => {
-                if (id) {
-                    console.log(`User ID is: ${id}`);
-                    navigate('/dashboard/' + id.toString());
-                } else {
-                    console.log('No user with the name "string" was found.');
-                }
-            });
+            if (token != "") {
+                saveToken(token);
+                setIsLoggedIn(true);
+                getUserId(formValues.username).then(id => {
+                    if (id) {
+                        console.log(`User ID is: ${id}`);
+                        navigate('/dashboard/' + id.toString());
+                    } else {
+                        console.log('No user with the name "string" was found.');
+                    }
+                });
+            } else {
+                setFormValues(initialValues);
+                setIsSubmit(false);
+                setIsLoggedIn(false);
+
+            }
         };
     }
 
@@ -97,8 +110,14 @@ const Loginform = () => {
     // ページロード時に既存のトークンをチェック
     useEffect(() => {
         const token = localStorage.getItem('access_token');
+        const username = localStorage.getItem('T-lab_username');
         if (token) {
-            setIsLoggedIn(true);
+            getUserId(username).then(id => {
+                if (id) {
+                    console.log(`User ID is: ${id}`);
+                    navigate('/dashboard/' + id.toString());
+                }
+            });
         }
     }, []);
 
