@@ -66,7 +66,7 @@ const Loginform = () => {
         //バリデーションチェックする
         setFormErrors(validate(formValues));
         setIsSubmit(true);
-        setFormValues({});
+        setFormValues(initialValues);
         //エラーメッセージがなければログイン情報を発信する。
         if (Object.keys(formErrors).length === 0) {
             const token = await login(formValues.username, formValues.password);
@@ -119,7 +119,6 @@ const Loginform = () => {
                             <input type="text" placeholder="password" name="password" onChange={(e) => handleChange(e)} />
                         </div>
                         <p className="errorMsg">{formErrors.password}</p>
-                        {/* <button class="submitButton" onClick={(e) => handleSubmit(e)}>login</button> */}
                         <button onClick={(e) => handleSubmit(e)}>login</button>
                     </div>
                 </div>
