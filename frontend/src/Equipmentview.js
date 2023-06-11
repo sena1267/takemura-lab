@@ -115,7 +115,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
                                 <div className="chart-area scroll">
-                                    <Equipmentviewswitch switchview={switchview} user_id={user_id} baseurl={baseurl} />
+                                    <Equipmentviewswitch switchview={switchview} user_id={user_id} baseurl={baseurl} setswitchview={setswitchview} />
                                 </div>
                             </div>
                         </div>
