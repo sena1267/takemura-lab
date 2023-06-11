@@ -20,6 +20,7 @@ class User(Base):
     icon = Column(String)
     birthday = Column(Integer)
     is_admin = Column(Boolean)
+    at_office = Column(Boolean)
 
 
 class Equipment(Base):

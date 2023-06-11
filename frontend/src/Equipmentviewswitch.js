@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from 'axios';
 import Equipmentdetailview from './Equipmentdetailview';
 
-const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
+const Equipmentviewswitch = ({ switchview, user_id, baseurl, setswitchview }) => {
     const initialValues = { bihinmei: "", cost: 0, buyer: 0, bought_data: "" };
     const [formValues, setFormValues] = useState(initialValues);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -24,28 +24,24 @@ const Equipmentviewswitch = ({ switchview, user_id, baseurl }) => {
         setFormValues({ ...formValues, [name]: value });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmit(true);
-        postEquipmentdata(formValues);
+        await postEquipmentdata(formValues);
     };
 
-    const postEquipmentdata = (values) => {
+    const postEquipmentdata = async (values) => {
         if (values.bihinmei && values.cost && values.buyer) {
             const postdata = { "name": values.bihinmei, "price": parseInt(values.cost), "buyer_id": parseInt(values.buyer), "bought_date": state.curDT };
             console.log(postdata);
             console.log(`${baseurl}/equipment/`);
             axios.post(`${baseurl}/equipment/`, postdata).then((response) => {
                 console.log(response.data);
-                setMessage("投稿が完了しました");
+                setMessage("");
+                setswitchview(true);
             })
                 .catch((error) => {
-                    if (error.response) {
-                        console(error.response.data);
-                        message = 'サーバーからのエラー：' + error.response.data;
-                    } else {
-                        message = 'エラー：' + error.message;
-                    };
+                    setMessage('エラーが発生しました(idの確認)')
                 })
         } else {
             setMessage('入力が完了していません');

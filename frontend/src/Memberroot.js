@@ -2,7 +2,7 @@ import React from "react";
 
 const Mamberroot = ({ details }) => {
     // ここのif文で研究室の中にいるか否かを分岐させる
-    if (true) {
+    if (!details.at_office) {
         return (
             <div className="col-lg-6 mb-4">
                 <div className="card bg-secondary text-white shadow">

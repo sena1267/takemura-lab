@@ -8,8 +8,13 @@ import { useState, useEffect } from 'react';
 import Navigate from './Navigate';
 import Tab from './Tab';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboardroot = ({ user_id }) => {
+
+    const username = localStorage.getItem('T-lab_username');
+
+    const navigate = useNavigate();
 
     const [isHomeValues, setisHomeValues] = useState(true);
 
@@ -17,7 +22,28 @@ const Dashboardroot = ({ user_id }) => {
     // ユーザーデータを格納する状態変数
     const [loginuser, setloginuser] = useState("");
 
-    const baseurl = "http://0.0.0.0:8080";
+    const baseurl = "http://127.0.0.1:8080";
+
+
+    async function getUserId(username) {
+        try {
+            const response = await axios.get(baseurl + '/user/');
+            const users = response.data;
+
+            const user = users.find(user => user.name === username);
+
+            if (user) {
+                return user.id;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.error(error);
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('T-lab_username');
+            navigate('/login');
+        }
+    };
 
     const showNavigate = () => {
         setshowNavigateValues(true);
@@ -34,13 +60,36 @@ const Dashboardroot = ({ user_id }) => {
     useEffect(() => {
         //データを取得する非同期関数を定義し、その関数を実行する
         async function fetchData() {
-            //axiosを利用し、データを取得
-            axios.get(baseurl + requests.fetchloginuserinfo).then((res) => {
-                setloginuser(res.data["name"]);
-            });
+            try {
+                //axiosを利用し、データを取得
+                axios.get(baseurl + requests.fetchloginuserinfo).then((res) => {
+                    if (res.data) {
+                        setloginuser(res.data["name"]);
+                    } else {
+                        localStorage.removeItem('access_token');
+                        localStorage.removeItem('T-lab_username');
+                        navigate('/login');
+                    }
+                });
+            } catch (error) {
+                console.error(error);
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('T-lab_username');
+                navigate('/login');
+            }
         }
         fetchData();
     }, [user_id]);
+
+    useEffect(() => {
+        getUserId(username).then(id => {
+            if (user_id != id) {
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('T-lab_username');
+                navigate('/login');
+            }
+        })
+    }, []);
 
     return (
         <>
@@ -49,7 +98,7 @@ const Dashboardroot = ({ user_id }) => {
                 <div id="wrapper">
 
                     {/* <!-- Sidebar --> */}
-                    <Navigate setisHomeValues={setisHomeValues} showNavigateValues={showNavigateValues} setshowNavigateValues={setshowNavigateValues} />
+                    <Navigate user_id={user_id} setisHomeValues={setisHomeValues} showNavigateValues={showNavigateValues} setshowNavigateValues={setshowNavigateValues} />
 
                     {/* <!-- Content Wrapper --> */}
                     <div id="content-wrapper" className="d-flex flex-column">
