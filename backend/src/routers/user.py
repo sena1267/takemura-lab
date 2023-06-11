@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from cruds import user as user_crud
 from database.database import get_db
-from schemas.user import UserCreate, User
+from schemas.user import UserCreate, User, UserUpdate
 from core.auth import get_current_user
 
 
@@ -52,3 +52,10 @@ def delete_user(
         raise HTTPException(status_code=404, detail="ユーザーが見つかりません。")
 
     return user_crud.delete_user(user_id, db)
+
+@router.post("/update/{user_id}")
+def update_user(user: UserUpdate, user_id: int, db: Session = Depends(get_db)):
+    db_user = user_crud.update_user(user=user, user_id=user_id, db=db)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user

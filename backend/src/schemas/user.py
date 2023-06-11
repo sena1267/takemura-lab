@@ -7,6 +7,7 @@ class User(BaseModel):
     icon: str
     birthday: int
     is_admin: bool
+    at_office: bool
 
     class Config:
         orm_mode = True
@@ -18,6 +19,14 @@ class UserCreate(BaseModel):
     icon: str
     birthday: int
     is_admin: bool
+    at_office: bool
 
     class Config:
         orm_mode = True
+
+class UserUpdate(BaseModel):
+    name: str
+    icon: str
+    birthday: int
+    is_admin: bool
+    at_office: bool

@@ -1,5 +1,5 @@
 import models
-from schemas.user import User, UserCreate
+from schemas.user import User, UserCreate, UserUpdate
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
@@ -28,7 +28,8 @@ def create_user(user: UserCreate, db: Session):
         password_hash=user.password,
         icon=user.icon,
         birthday=user.birthday,
-        is_admin=user.is_admin
+        is_admin=user.is_admin,
+        at_office=user.at_office
     )
     db.add(user_obj)
     db.commit()
@@ -39,3 +40,15 @@ def delete_user(user_id: int, db: Session):
 
     db.delete(user)
     db.commit()
+
+def update_user(user: UserUpdate, user_id: int, db: Session):
+    user_obj = get_user_by_id(id=user_id, db=db)
+    if user_obj is not None:
+        user_obj.name = user.name
+        user_obj.icon = user.icon
+        user_obj.birthday = user.birthday
+        user_obj.is_admin = user.is_admin
+        user_obj.at_office = user.at_office
+        db.commit()
+        db.refresh(user_obj)
+    return user_obj

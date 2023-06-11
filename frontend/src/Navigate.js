@@ -4,8 +4,9 @@ import './css/sb-admin-2.min.css';
 import './vendor/fontawesome-free/css/all.min.css';
 import './Dashboardview.css';
 import { useNavigate } from "react-router-dom";
+import Atofficechange from "./App";
 
-const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }) => {
+const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues, user_id }) => {
     // この関数が呼び出されるとホーム画面が呼び出される
     const trueHome = () => {
         // データの取得
@@ -28,6 +29,9 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }
         navigate('/login')
     };
 
+    const switchatoffice = () => {
+        navigate('/atofficechange/' + user_id)
+    }
     if (showNavigateValues === true) {
         return (
             <>
@@ -70,6 +74,11 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues }
                             <a className="nav-link" onClick={falseHome}>
                                 <i className="fas fa-fw fa-list"></i>
                                 <span>備品管理</span></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={switchatoffice}>
+                                <i className="fas fa-solid fa-person-booth"></i>
+                                <span>在室スイッチ</span></a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" onClick={movepage}>
