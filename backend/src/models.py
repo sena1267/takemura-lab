@@ -33,3 +33,22 @@ class Equipment(Base):
     bought_date = Column(DateTime)
 
     buyer = relationship("User")
+
+
+class EquipmentLack(Base):
+    __tablename__ = "equipment_lack"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(20), nullable=False)
+
+
+class EquipmentHistroy(Base):
+    __tablename__ = "equipment_history"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(20), nullable=False)
+    price = Column(Integer, nullable=False)
+    buyer_id = Column(Integer, ForeignKey("user.id"))
+    bought_date = Column(DateTime)
+
+    buyer = relationship("User")
