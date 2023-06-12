@@ -79,6 +79,10 @@ form {
     text-transform: uppercase;
     transition: background 0.3s ease-in-out;
     width: 100%;
+    line-height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button:hover {
