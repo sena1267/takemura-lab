@@ -55,5 +55,6 @@ def update_equipment(equipent_id: int, equipment: EquipmentUpdate, db: Session):
 
 
 def delete_equipment(equipment_id: int, db: Session):
-    db.execute(delete(models.Equipment).where(models.Equipment.id == equipment_id))
+    db.execute(delete(models.Equipment).where(
+        models.Equipment.id == equipment_id))
     db.commit()
