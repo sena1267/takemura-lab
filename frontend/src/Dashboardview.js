@@ -5,8 +5,19 @@ import './css/sb-admin-2.min.css';
 import './vendor/fontawesome-free/css/all.min.css';
 import './Dashboardview.css';
 import Members from './Members.js';
+import { useState } from "react";
+import Informationswitch from './Informationswitch'
+import "./Equipmentlistcontent.css";
 
 const Dashboardview = ({ user_id, baseurl }) => {
+    const [switchview, setswitchview] = useState(false);
+    const toggleswitchview = () => {
+        if (switchview == true) {
+            setswitchview(false);
+        } else {
+            setswitchview(true);
+        }
+    };
     return (
         <>
             <div className="container-fluid">
@@ -35,10 +46,14 @@ const Dashboardview = ({ user_id, baseurl }) => {
                         <div className="card shadow mb-4">
                             <div className="card-header py-3">
                                 <h6 className="m-0 font-weight-bold text-primary font-japanese">掲示板</h6>
+                                <div className="text-right">
+                                    <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>画面切り替え</button>
+                                </div>
                             </div>
                             <div className="card-body">
-                                <p className="">みんな頑張ってて偉いです。(2023.5.16 19:37)</p>
-                                <p className="mb-0">来週の金曜日にミーティングしましょう。(2023.6.19 12:40)</p>
+                                <div className="scroll">
+                                    <Informationswitch switchview={switchview} setswitchview={setswitchview} user_id={user_id} baseurl={baseurl} />
+                                </div>
                             </div>
                         </div>
                     </div>
