@@ -47,7 +47,7 @@ const Dashboardview = ({ user_id, baseurl }) => {
                             <div className="card-header py-3">
                                 <h6 className="m-0 font-weight-bold text-primary font-japanese">掲示板</h6>
                                 <div className="text-right">
-                                    <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>画面切り替え</button>
+                                    <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>switch</button>
                                 </div>
                             </div>
                             <div className="card-body">

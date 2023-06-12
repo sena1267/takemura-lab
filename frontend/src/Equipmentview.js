@@ -118,8 +118,8 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             {/* <!-- Card Header - Dropdown --> */}
                             <div
                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 className="m-0 font-weight-bold text-primary font-japanese">研究室内備品リスト</h6>
-                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>画面切り替え</button>
+                                <h6 className="m-0 font-weight-bold text-primary font-japanese mr-1">研究室内備品リスト</h6>
+                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchview}>switch</button>
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
@@ -136,8 +136,8 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             {/* <!-- Card Header - Dropdown --> */}
                             <div
                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 className="m-0 font-weight-bold text-primary font-japanese">研究室内不足備品リスト</h6>
-                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchlack}>画面切り替え</button>
+                                <h6 className="m-0 font-weight-bold text-primary font-japanese mr-1">研究室内不足備品リスト</h6>
+                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchlack}>switch</button>
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">

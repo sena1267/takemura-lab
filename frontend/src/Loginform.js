@@ -124,27 +124,28 @@ const Loginform = () => {
     }, []);
 
     return (
-        <div class="log">
-            <div class="loginform-background">
-                <div class="card-login">
-                    <div class="content-login">
-                        <h2>T-Lab</h2>
-                        <h3>LOGIN</h3>
-                        <div class="usernameform">
-                            <label>username</label>
-                            <input type="text" placeholder="username" name="username" value={formValues.username} onChange={(e) => handleChange(e)} />
-                        </div>
-                        <p>{formErrors.username}</p>
-                        <div class="passwordform">
-                            <label>password</label>
-                            <input type="text" placeholder="password" name="password" value={formValues.password} onChange={(e) => handleChange(e)} />
-                        </div>
-                        <p className="errorMsg">{formErrors.password}</p>
-                        <button onClick={(e) => handleSubmit(e)}>login</button>
+        <>
+            <div class="form-wrapper">
+                <h1>Sign In</h1>
+                <form>
+                    <div class="form-item">
+                        <label for="email"></label>
+                        <input type="text" name="username" required="required" placeholder="UserName" value={formValues.username} onChange={(e) => handleChange(e)} ></input>
                     </div>
+                    <div class="form-item">
+                        <label for="password"></label>
+                        <input type="password" name="password" required="required" placeholder="Password" value={formValues.password} onChange={(e) => handleChange(e)}></input>
+                    </div>
+                    <div class="button-panel">
+                        <input type="submit" class="button" title="Sign In" value="Sign In" onClick={(e) => handleSubmit(e)}></input>
+                    </div>
+                </form>
+                <div class="form-footer">
+                    <p><a href="#">　</a></p>
+                    <p><a href="#">　</a></p>
                 </div>
-            </div >
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -1,140 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Poltawski+Nowy:ital@1&display=swap');
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
 
+/* fontawesome */
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+/* Simple Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poltawski Nowy"
 }
 
-body .log {
-    min-height: 100vh;
-    background-color: #e7ffc4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* body */
+body {
+    background: #e9e9e9;
+    color: #5e5e5e;
+    font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
 
-.loginform-background {
-    min-height: 100vh;
-    background-color: #e7ffc4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Form Layout */
+.form-wrapper {
+    background: #fafafa;
+    margin: 10em auto;
+    padding: 0 1em;
+    max-width: 370px;
 }
 
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: linear-gradient(#7555c6, #187d54);
-    clip-path: circle(30% at 100% 82%);
-    z-index: -1;
-}
-
-/* body::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: linear-gradient(#7555c6, #187d54);
-    clip-path: circle(60% at 15% 27%);
-    z-index: -1;
-} */
-
-.card-login {
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    width: 380px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+h1 {
     text-align: center;
-    border-radius: 15px;
-    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
-    background: rgba(22, 102, 97, 0.77);
-    backdrop-filter: blur(5px);
-    overflow: hidden;
+    padding: 1em 0;
 }
 
-.card-login .content-login {
-    position: relative;
-    padding: 20px;
-    transform: translateY(200px);
-    opacity: 0;
-    transition: 0.5s;
+form {
+    padding: 0 1.5em;
 }
 
-.card-login:hover .content-login {
-    transform: translateY(0);
-    opacity: 1;
+.form-item {
+    margin-bottom: 0.75em;
+    width: 100%;
 }
 
-.card-login .content-login h2 {
-    position: absolute;
-    top: -80px;
-    right: 30px;
-    font-size: 6rem;
-    color: rgba(255, 255, 255, 0.1);
+.form-item input {
+    background: #fafafa;
+    border: none;
+    border-bottom: 2px solid #e9e9e9;
+    color: #666;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    height: 50px;
+    transition: border-color 0.3s;
+    width: 100%;
 }
 
-.card-login .content-login h3 {
-    color: white;
-    font-size: 1.8rem;
+.form-item input:focus {
+    border-bottom: 2px solid #c0c0c0;
+    outline: none;
 }
 
-.card-login .content-login p {
-    font-size: 1rem;
-    color: white;
-    font-weight: 300;
+.button-panel {
+    margin: 2em 0 0;
+    width: 100%;
 }
 
-.card-login .content-login button {
+.button-panel .button {
+    background: #f16272;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+}
+
+.button:hover {
+    background: #ee3e52;
+}
+
+.form-footer {
+    font-size: 1em;
+    padding: 2em 0;
+    text-align: center;
+}
+
+.form-footer a {
+    color: #8c8c8c;
     text-decoration: none;
-    display: inline-block;
-    padding: 8px 20px;
-    background: white;
-    margin-top: 15px;
-    border-radius: 20px;
-    color: black;
-    font-weight: 500;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s;
 }
 
-.card-login .content-login .usernameform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-login .content-login .passwordform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-login .content-login .usernameform label {
-    padding: 10%;
-    color: white;
-}
-
-.card-login .content-login .passwordform label {
-    padding: 10%;
-    color: white;
-}
-
-.card-login .content-login .usernameform input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-.card-login .content-login .passwordform input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+.form-footer a:hover {
+    border-bottom: 1px dotted #8c8c8c;
 }
