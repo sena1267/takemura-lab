@@ -6,6 +6,7 @@ import Lackequipmentlist from './Lackequipmentlist';
 
 const Equipmentview = ({ user_id, baseurl }) => {
     const [switchview, setswitchview] = useState(true);
+    const [switchlack, setswitchlack] = useState(true);
 
     const toggleswitchview = () => {
         if (switchview == true) {
@@ -14,6 +15,14 @@ const Equipmentview = ({ user_id, baseurl }) => {
             setswitchview(true);
         }
     };
+
+    const toggleswitchlack = () => {
+        if (switchlack == true) {
+            setswitchlack(false);
+        } else {
+            setswitchlack(true);
+        }
+    }
 
     return (
         <>
@@ -128,11 +137,12 @@ const Equipmentview = ({ user_id, baseurl }) => {
                             <div
                                 className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 className="m-0 font-weight-bold text-primary font-japanese">研究室内不足備品リスト</h6>
+                                <button type="button" className="btn btn-primary font-japanese" onClick={toggleswitchlack}>画面切り替え</button>
                             </div>
                             {/* <!-- Card Body --> */}
                             <div className="card-body">
                                 <div className="chart-pie pt-4 pb-2 scroll">
-                                    <Lackequipmentlist user_id={user_id} baseurl={baseurl} />
+                                    <Lackequipmentlist switchlack={switchlack} user_id={user_id} baseurl={baseurl} setswitchlack={setswitchlack} />
                                 </div>
                             </div>
                         </div>
