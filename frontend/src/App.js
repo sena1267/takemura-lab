@@ -94,7 +94,9 @@ export const Atofficechange = () => {
               "icon": userData.icon,
               "birthday": userData.birthday,
               "is_admin": userData.is_admin,
-              "at_office": !userData.at_office // Toggle at_office value
+              "at_office": !userData.at_office, // Toggle at_office value
+              "current": userData.current,
+              "target": userData.target
             };
             axios.post(baseurl + `/user/update/${user.id}`, updatedUserData)
               .then(res => {
