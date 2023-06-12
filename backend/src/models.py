@@ -1,14 +1,17 @@
-from database.database import Base
-from sqlalchemy.orm import relationship
+from datetime import datetime
 
 from sqlalchemy import (
     Column,
     String,
+    Text,
     Integer,
     Boolean,
     DateTime,
     ForeignKey
 )
+from sqlalchemy.orm import relationship
+
+from database.database import Base
 
 
 class User(Base):
@@ -52,3 +55,16 @@ class EquipmentHistroy(Base):
     bought_date = Column(DateTime)
 
     buyer = relationship("User")
+
+
+class Information(Base):
+    __tablename__ = "forum"
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255))
+    content = Column(Text)
+    url = Column(Text)
+    created_at = Column(DateTime, default=datetime.now())
+    created_by = Column(Integer, ForeignKey("user.id"))
+
+    creator = relationship("User")
