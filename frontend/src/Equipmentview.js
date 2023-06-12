@@ -73,7 +73,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                     </div>
                     {/* <!-- Earnings (Monthly) Card Example --> */}
                     <div className="col-xl-3 col-md-6 mb-4">
-                        <div className="card border-left-success shadow h-100 py-2">
+                        <div className="card border-left-info shadow h-100 py-2">
                             <div className="card-body">
                                 <div className="row no-gutters align-items-center">
                                     <div className="col mr-2">
@@ -90,7 +90,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                     </div>
                     {/* <!-- Pending Requests Card Example --> */}
                     <div className="col-xl-3 col-md-6 mb-4">
-                        <div className="card border-left-success shadow h-100 py-2">
+                        <div className="card border-left-warning shadow h-100 py-2">
                             <div className="card-body">
                                 <div className="row no-gutters align-items-center">
                                     <div className="col mr-2">
