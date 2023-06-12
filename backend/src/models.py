@@ -21,6 +21,8 @@ class User(Base):
     birthday = Column(Integer)
     is_admin = Column(Boolean)
     at_office = Column(Boolean)
+    current = Column(Integer)
+    target = Column(Integer)
 
 
 class Equipment(Base):
