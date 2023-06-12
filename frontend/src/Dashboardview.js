@@ -10,7 +10,7 @@ import Informationswitch from './Informationswitch'
 import "./Equipmentlistcontent.css";
 
 const Dashboardview = ({ user_id, baseurl }) => {
-    const [switchview, setswitchview] = useState(false);
+    const [switchview, setswitchview] = useState(true);
     const toggleswitchview = () => {
         if (switchview == true) {
             setswitchview(false);

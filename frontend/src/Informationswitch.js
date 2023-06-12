@@ -65,7 +65,7 @@ const Informationswitch = ({ switchview, setswitchview, user_id, baseurl }) => {
         return (
             <>
                 <form action=''>
-                    <h3 className='text-primary'>ニュース作成</h3>
+                    <h3 className='text-primary'>投稿</h3>
                     <input type='text' placeholder='title' name='title' required onChange={(e) => handleChange(e)}></input>
                     <input type='text' placeholder='content' name='content' required onChange={(e) => handleChange(e)}></input>
                     <input type='text' placeholder='url' name='url' required onChange={(e) => handleChange(e)}></input>
