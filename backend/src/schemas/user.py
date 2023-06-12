@@ -8,6 +8,8 @@ class User(BaseModel):
     birthday: int
     is_admin: bool
     at_office: bool
+    current: int
+    target: int
 
     class Config:
         orm_mode = True
@@ -20,7 +22,9 @@ class UserCreate(BaseModel):
     birthday: int
     is_admin: bool
     at_office: bool
-
+    current: int
+    target: int
+    
     class Config:
         orm_mode = True
 
@@ -30,3 +34,5 @@ class UserUpdate(BaseModel):
     birthday: int
     is_admin: bool
     at_office: bool
+    current: int
+    target: int

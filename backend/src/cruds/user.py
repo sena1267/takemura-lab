@@ -29,7 +29,9 @@ def create_user(user: UserCreate, db: Session):
         icon=user.icon,
         birthday=user.birthday,
         is_admin=user.is_admin,
-        at_office=user.at_office
+        at_office=user.at_office,
+        current=user.current,
+        target=user.target
     )
     db.add(user_obj)
     db.commit()
@@ -49,6 +51,8 @@ def update_user(user: UserUpdate, user_id: int, db: Session):
         user_obj.birthday = user.birthday
         user_obj.is_admin = user.is_admin
         user_obj.at_office = user.at_office
+        user_obj.current = user.current
+        user_obj.target = user.target
         db.commit()
         db.refresh(user_obj)
     return user_obj

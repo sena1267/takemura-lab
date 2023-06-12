@@ -21,6 +21,10 @@ const Dashboardroot = ({ user_id }) => {
     const [showNavigateValues, setshowNavigateValues] = useState(true);
     // ユーザーデータを格納する状態変数
     const [loginuser, setloginuser] = useState("");
+    // ユーザーがisadminかどうかを記憶する状態変数
+    const [isAdmin, setisAdmin] = useState(false);
+    // 管理者ページの表示を管理する状態変数
+    const [isAdminView, setisAdminView] = useState(false);
 
     const baseurl = "http://127.0.0.1:8080";
 
@@ -65,6 +69,7 @@ const Dashboardroot = ({ user_id }) => {
                 axios.get(baseurl + requests.fetchloginuserinfo).then((res) => {
                     if (res.data) {
                         setloginuser(res.data["name"]);
+                        setisAdmin(res.data[isAdmin])
                     } else {
                         localStorage.removeItem('access_token');
                         localStorage.removeItem('T-lab_username');
@@ -98,7 +103,7 @@ const Dashboardroot = ({ user_id }) => {
                 <div id="wrapper">
 
                     {/* <!-- Sidebar --> */}
-                    <Navigate user_id={user_id} setisHomeValues={setisHomeValues} showNavigateValues={showNavigateValues} setshowNavigateValues={setshowNavigateValues} />
+                    <Navigate user_id={user_id} setisHomeValues={setisHomeValues} showNavigateValues={showNavigateValues} setshowNavigateValues={setshowNavigateValues} isAdmin={isAdmin} setisAdminView={setisAdminView} />
 
                     {/* <!-- Content Wrapper --> */}
                     <div id="content-wrapper" className="d-flex flex-column">
@@ -134,7 +139,7 @@ const Dashboardroot = ({ user_id }) => {
 
                             </nav>
                             {/* ページのコンテンツ部分 */}
-                            <Dashboardcontent isHome={isHomeValues} user_id={user_id} baseurl={baseurl} />
+                            <Dashboardcontent isHome={isHomeValues} isAdminView={isAdminView} user_id={user_id} baseurl={baseurl} />
                         </div>
                     </div>
                 </div>
