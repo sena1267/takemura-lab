@@ -69,7 +69,7 @@ const Dashboardroot = ({ user_id }) => {
                 axios.get(baseurl + requests.fetchloginuserinfo).then((res) => {
                     if (res.data) {
                         setloginuser(res.data["name"]);
-                        setisAdmin(res.data[isAdmin])
+                        setisAdmin(res.data['is_admin'])
                     } else {
                         localStorage.removeItem('access_token');
                         localStorage.removeItem('T-lab_username');
