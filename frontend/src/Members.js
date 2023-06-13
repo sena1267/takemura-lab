@@ -13,6 +13,7 @@ const Members = ({ baseurl }) => {
         async function fetchAllMembers() {
             const res = await axios.get(baseurl + fetchallmember);
             if (res.data && Array.isArray(res.data)) {
+                res.data.sort((a, b) => a.id - b.id);
                 setallmembersValues(res.data)
             }
             console.log("type: " + typeof (allmembersValues));

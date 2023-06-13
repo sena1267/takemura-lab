@@ -11,6 +11,8 @@ const Informationlistcontent = ({ user_id, baseurl, setisdetailvalue, setdetaile
             console.log(baseurl + fetchequipment)
             const res = await axios.get(baseurl + fetchequipment);
             if (res.data && Array.isArray(res.data)) {
+                // posted_atフィールドで昇順にソート
+                res.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 setinformationValues(res.data)
             }
         };
