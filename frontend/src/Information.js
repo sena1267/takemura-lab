@@ -8,7 +8,7 @@ const Information = ({ details, setisdetailvalue, setdetailevalue }) => {
     };
     return (
         <>
-            <a className="mt-1" onClick={switchisdetailvalue}>{details.title}（{details.created_at}）</a>
+            <p><a className="mt-1" onClick={switchisdetailvalue}>{details.title}（{details.created_at}）</a></p>
         </>
     );
 }
