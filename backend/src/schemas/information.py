@@ -27,5 +27,3 @@ class InformationUpdate(BaseModel):
     title: str
     content: str
     url: str
-    created_at: datetime
-    created_by: int
