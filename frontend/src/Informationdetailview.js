@@ -7,14 +7,14 @@ const Informationdetailview = ({ user_id, baseurl, setisdetailvalue, setdetailev
         setisdetailvalue(false);
     };
 
-    // const deletedata = async () => {
-    //     try {
-    //         await axios.delete(`${baseurl}/equipment/${detailvalue['id']}`);
-    //         setisdetailvalue(false);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    const deletedata = async () => {
+        try {
+            await axios.delete(`${baseurl}/information/${detailvalue['id']}`);
+            setisdetailvalue(false);
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <>
             <table className='font-japanese'>
@@ -43,8 +43,7 @@ const Informationdetailview = ({ user_id, baseurl, setisdetailvalue, setdetailev
             </table>
             <div className="flexbox">
                 <button type="button" className="btn btn-primary listbutton" onClick={switchisdetailValue}>list</button>
-                {/* <button type="button" className="btn btn-danger deletebutton" onClick={deletedata}>delete</button> */}
-                <button type="button" className="btn btn-danger deletebutton">delete</button>
+                <button type="button" className="btn btn-danger deletebutton" onClick={deletedata}>delete</button>
             </div>
         </>
     );
