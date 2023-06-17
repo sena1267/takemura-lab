@@ -1,12 +1,38 @@
 import React from "react";
 import Equipmentviewswitch from "./Equipmentviewswitch";
 import "./Equipmentlistcontent.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Lackequipmentlist from './Lackequipmentlist';
+import axios from 'axios';
 
 const Equipmentview = ({ user_id, baseurl }) => {
     const [switchview, setswitchview] = useState(true);
     const [switchlack, setswitchlack] = useState(true);
+    const [payduty, setPayduty] = useState(0);
+    const [recieveallmoney, setRecieveallmoney] = useState(0);
+
+    useEffect(() => {
+        const counter = 0;
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${baseurl}/user/`);
+                const users = response.data;
+                let tempRecieveallmoney = recieveallmoney;
+                let tempPayduty = 0;
+                for (const user of users) {
+                    tempRecieveallmoney += user.current * 500;
+                    if (user.id === user_id) {
+                        tempPayduty = (user.target - user.current) * 500;
+                    }
+                }
+                setRecieveallmoney(tempRecieveallmoney);
+                setPayduty(tempPayduty);
+            } catch (error) {
+                console.error(`Error fetching data: ${error}`);
+            }
+        };
+        fetchData();
+    }, [user_id, baseurl]);
 
     const toggleswitchview = () => {
         if (switchview == true) {
@@ -27,7 +53,6 @@ const Equipmentview = ({ user_id, baseurl }) => {
     return (
         <>
             <div className="container-fluid">
-
                 {/* <!-- Page Heading --> */}
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -44,7 +69,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                                     <div className="col mr-2">
                                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1 font-japanese">
                                             今月支払い分</div>
-                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥40,000</div>
+                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥{payduty}</div>
                                     </div>
                                     <div className="col-auto">
                                         <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -79,7 +104,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                                     <div className="col mr-2">
                                         <div className="text-xs font-weight-bold text-info text-uppercase mb-1 font-japanese">
                                             会計受け取り金額</div>
-                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥215,000</div>
+                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥{recieveallmoney}</div>
                                     </div>
                                     <div className="col-auto">
                                         <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
