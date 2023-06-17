@@ -9,8 +9,10 @@ const Admin = ({ baseurl }) => {
             const usersResponse = await axios.get(`${baseurl}/user`);
             const users = usersResponse.data;
             for (const user of users) {
-                const updatedUser = { ...user, target: user.target + 1 };
-                await axios.post(`${baseurl}/user/update/${user.id}`, updatedUser);
+                if (user.id != 1) {
+                    const updatedUser = { ...user, target: user.target + 1 };
+                    await axios.post(`${baseurl}/user/update/${user.id}`, updatedUser);
+                }
             }
         } catch (error) {
             console.error(`Error updating targets: ${error}`);
