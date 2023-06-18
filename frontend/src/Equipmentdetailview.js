@@ -16,6 +16,24 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
         }
     };
 
+    const finishequipment = async () => {
+        const postdata = {
+            "name": detailvalue['name'],
+            "price": detailvalue['price'],
+            "buyer_id": detailvalue['buyer_id'],
+            "bought_date": detailvalue['bought_date']
+        }
+        try {
+            await axios.post(`${baseurl}/equipment/history/`, postdata).then(res => {
+                axios.delete(`${baseurl}/equipment/${detailvalue['id']}`).then(res => {
+                    setisdetailvalue(false);
+                })
+            })
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <>
             <table className='font-japanese'>
@@ -38,9 +56,29 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
                     </tr>
                 </tbody>
             </table>
-            <div className="flexbox">
-                <button type="button" className="btn btn-primary listbutton" onClick={switchisdetailValue}>list</button>
-                <button type="button" className="btn btn-danger deletebutton" onClick={deletedata}>delete</button>
+            <div className="card-body">
+                <a className="btn btn-success btn-icon-split" onClick={switchisdetailValue}>
+                    <span className="icon text-white-50">
+                        <i className="fas fa-check"></i>
+                    </span>
+                    <span className="text">リストに戻る</span>
+                </a>
+            </div>
+            <div className="card-body">
+                <a className="btn btn-success btn-icon-split" onClick={finishequipment}>
+                    <span className="icon text-white-50">
+                        <i className="fas fa-check"></i>
+                    </span>
+                    <span className="text">備品使い切り</span>
+                </a>
+            </div>
+            <div className="card-body">
+                <a className="btn btn-danger btn-icon-split" onClick={deletedata}>
+                    <span className="icon text-white-50">
+                        <i className="fas fa-check"></i>
+                    </span>
+                    <span className="text">削除</span>
+                </a>
             </div>
         </>
     );
