@@ -14,7 +14,7 @@ const Equipmentlistcontent = ({ user_id, baseurl, setisdetailvalue, setdetaileva
             console.log(baseurl + fetchequipment)
             const res = await axios.get(baseurl + fetchequipment);
             if (res.data && Array.isArray(res.data)) {
-                setequipmentValues(res.data)
+                setequipmentValues(res.data);
             }
         };
         fetchequipmentdata();

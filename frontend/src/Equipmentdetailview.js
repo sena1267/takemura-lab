@@ -1,8 +1,10 @@
 import React from "react";
 import './Equipmentdetailview.css';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdetailevalue, detailvalue }) => {
+    const [username, setusername] = useState('');
     const switchisdetailValue = () => {
         setisdetailvalue(false);
     };
@@ -34,6 +36,20 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
         }
     }
 
+    useEffect(() => {
+        async function getusername() {
+            try {
+                await axios.get(`${baseurl}/user/get_user/${detailvalue['id']}`).then(res => {
+                    console.log(res.data['name']);
+                    setusername(res.data['name']);
+                })
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getusername();
+    }, [])
+
     return (
         <>
             <table className='font-japanese'>
@@ -47,8 +63,8 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
                         <td>{detailvalue['price']}</td>
                     </tr>
                     <tr>
-                        <td>buyer_id</td>
-                        <td>{detailvalue['buyer_id']}</td>
+                        <td>buyer</td>
+                        <td>{username}</td>
                     </tr>
                     <tr>
                         <td>bought_date</td>
