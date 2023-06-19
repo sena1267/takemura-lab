@@ -57,9 +57,9 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
                 </tbody>
             </table>
             <div className="card-body">
-                <a className="btn btn-success btn-icon-split" onClick={switchisdetailValue}>
+                <a className="btn btn-primary btn-icon-split" onClick={switchisdetailValue}>
                     <span className="icon text-white-50">
-                        <i className="fas fa-check"></i>
+                        <i className="fas fa-solid fa-list"></i>
                     </span>
                     <span className="text">リストに戻る</span>
                 </a>
@@ -75,7 +75,7 @@ const Equipmentdetailview = ({ baseurl, isdetailValue, setisdetailvalue, setdeta
             <div className="card-body">
                 <a className="btn btn-danger btn-icon-split" onClick={deletedata}>
                     <span className="icon text-white-50">
-                        <i className="fas fa-check"></i>
+                        <i className="fas fa-trash"></i>
                     </span>
                     <span className="text">削除</span>
                 </a>
