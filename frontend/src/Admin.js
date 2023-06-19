@@ -61,7 +61,7 @@ const Admin = ({ baseurl }) => {
                     {/* <!-- Content Column --> */}
                     <div className="col-lg-6 mb-4">
 
-                        <MembersinAdmin baseurl={baseurl} update={update} />
+                        <MembersinAdmin baseurl={baseurl} update={update} setUpdate={setUpdate} />
 
                     </div>
                     {/* <!-- Content Column --> */}

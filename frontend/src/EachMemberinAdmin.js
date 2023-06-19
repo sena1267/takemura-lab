@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview }) => {
+const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpdate }) => {
     const update = () => {
         const updatedata = {
             'name': details.name,
@@ -14,6 +14,7 @@ const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview }) => {
         }
         axios.post(baseurl + '/user/update/' + details.id, updatedata).then(res => {
             setChangeView(changeview + 1);
+            setUpdate(setUpdate(prevState => !prevState));
         })
     }
 
