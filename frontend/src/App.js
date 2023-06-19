@@ -59,7 +59,7 @@ const Home = () => {
               <p><Link to="/login" className="button" role="button">ログイン</Link></p>
             </div>
             <div className="image-area">
-              <img className="image" src="" alt='武村研究室のログイン画面の背景画像' />
+              <img className="image" src="" alt='' />
             </div>
           </header>
         </div>
