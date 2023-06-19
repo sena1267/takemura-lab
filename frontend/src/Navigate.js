@@ -49,8 +49,8 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues, 
 
                         {/* <!-- Sidebar - Brand --> */}
                         <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                            <div className="sidebar-brand-icon rotate-n-15">
-                                <i className="fas fa-laugh-wink"></i>
+                            <div className="sidebar-brand-icon">
+                                <img src="/img/takemura-lab-logo_.png" alt="Logo" style={{ maxHeight: '40%', maxWidth: '40%' }} />
                             </div>
                             <div className="sidebar-brand-text mx-3">LabLink</div>
                         </a>
@@ -118,8 +118,8 @@ const Navigate = ({ setisHomeValues, showNavigateValues, setshowNavigateValues, 
 
                         {/* <!-- Sidebar - Brand --> */}
                         <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                            <div className="sidebar-brand-icon rotate-n-15">
-                                <i className="fas fa-laugh-wink"></i>
+                            <div className="sidebar-brand-icon">
+                                <img src="/img/takemura-lab-logo_.png" alt="Logo" style={{ maxHeight: '40%', maxWidth: '40%' }} />
                             </div>
                             <div className="sidebar-brand-text mx-3">Lab Link</div>
                         </a>
