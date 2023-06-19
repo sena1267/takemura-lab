@@ -4,12 +4,16 @@ import "./Equipmentlistcontent.css";
 import { useState, useEffect } from "react";
 import Lackequipmentlist from './Lackequipmentlist';
 import axios from 'axios';
+import Totalcost from "./Totalcost";
+import Remainingmoney from "./Remainingmoney";
 
-const Equipmentview = ({ user_id, baseurl }) => {
+const Equipmentview = ({ user_id, baseurl, monthpay }) => {
     const [switchview, setswitchview] = useState(true);
     const [switchlack, setswitchlack] = useState(true);
     const [payduty, setPayduty] = useState(0);
     const [recieveallmoney, setRecieveallmoney] = useState(0);
+    const [totalcost, setTotalcost] = useState(null);
+    const [remaining, setremaining] = useState(0);
 
     useEffect(() => {
         const counter = 0;
@@ -20,9 +24,9 @@ const Equipmentview = ({ user_id, baseurl }) => {
                 let tempRecieveallmoney = recieveallmoney;
                 let tempPayduty = 0;
                 for (const user of users) {
-                    tempRecieveallmoney += user.current * 500;
+                    tempRecieveallmoney += user.current * monthpay;
                     if (user.id === user_id) {
-                        tempPayduty = (user.target - user.current) * 500;
+                        tempPayduty = (user.target - user.current) * monthpay;
                     }
                 }
                 setRecieveallmoney(tempRecieveallmoney);
@@ -33,6 +37,31 @@ const Equipmentview = ({ user_id, baseurl }) => {
         };
         fetchData();
     }, [user_id, baseurl]);
+
+    useEffect(() => {
+        const calctotal = async () => {
+            try {
+                const equipmentRes = await axios.get(`${baseurl}/equipment/`);
+                const equipmentHistoryRes = await axios.get(`${baseurl}/equipment/history/`);
+
+                const equipmentPrices = equipmentRes.data.map(item => item.price);
+                const equipmentHistoryPrices = equipmentHistoryRes.data.map(item => item.price);
+
+                const totalCost = [...equipmentPrices, ...equipmentHistoryPrices].reduce((a, b) => a + b, 0);
+                setTotalcost(totalCost);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        };
+        calctotal();
+    }, [baseurl]);
+
+    const remainingcalc = () => {
+        setremaining(recieveallmoney - totalcost);
+    }
+    useEffect(() => {
+        remainingcalc();
+    }, [totalcost, recieveallmoney]);
 
     const toggleswitchview = () => {
         if (switchview == true) {
@@ -80,22 +109,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                     </div>
 
                     {/* <!-- Earnings (Monthly) Card Example --> */}
-                    <div className="col-xl-3 col-md-6 mb-4">
-                        <div className="card border-left-success shadow h-100 py-2">
-                            <div className="card-body">
-                                <div className="row no-gutters align-items-center">
-                                    <div className="col mr-2">
-                                        <div className="text-xs font-weight-bold text-success text-uppercase mb-1 font-japanese">
-                                            総備品コスト</div>
-                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥215,000</div>
-                                    </div>
-                                    <div className="col-auto">
-                                        <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Totalcost baseurl={baseurl} setTotalcost={setTotalcost} totalcost={totalcost} />
                     {/* <!-- Earnings (Monthly) Card Example --> */}
                     <div className="col-xl-3 col-md-6 mb-4">
                         <div className="card border-left-info shadow h-100 py-2">
@@ -114,23 +128,7 @@ const Equipmentview = ({ user_id, baseurl }) => {
                         </div>
                     </div>
                     {/* <!-- Pending Requests Card Example --> */}
-                    <div className="col-xl-3 col-md-6 mb-4">
-                        <div className="card border-left-warning shadow h-100 py-2">
-                            <div className="card-body">
-                                <div className="row no-gutters align-items-center">
-                                    <div className="col mr-2">
-                                        <div className="text-xs font-weight-bold text-warning text-uppercase mb-1 font-japanese">
-                                            会計余剰金
-                                        </div>
-                                        <div className="h5 mb-0 font-weight-bold text-gray-800">￥215,000</div>
-                                    </div>
-                                    <div className="col-auto">
-                                        <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Remainingmoney remaining={remaining} />
                 </div>
 
                 {/* <!-- Content Row --> */}

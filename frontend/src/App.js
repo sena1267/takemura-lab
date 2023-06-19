@@ -31,8 +31,9 @@ const Home = () => {
       <div className="container text-center mt-5">
         <header>
           <div className="textarea">
-            <h1 className="wow animate__animated animate__fadeInUp">Takemura Lab</h1>
-            <p>　</p>
+            <h1 className="wow animate__animated animate__fadeInUp">LabLink</h1>
+            <p>made by takemura lab</p>
+            <strong>　</strong>
             <p><Link to="/login" className="button" role="button">ログイン</Link></p>
           </div>
           <div class="image-area">
@@ -46,9 +47,10 @@ const Home = () => {
 
 //ユーザーログインのフォームです。
 const Login = () => {
+  let baseurl = "http://127.0.0.1:8080";
   return (
     <div>
-      <Loginform />
+      <Loginform baseurl={baseurl} />
     </div>
   );
 };
@@ -57,10 +59,11 @@ const Login = () => {
 const Dashboard = () => {
   const params = useParams();
   const user_id = params.id;
+  let baseurl = "http://127.0.0.1:8080";
   return (
     <div>
       {/* dashboardにuser_idを渡す */}
-      <Dashboardroot user_id={user_id} />
+      <Dashboardroot user_id={user_id} baseurl={baseurl} />
     </div>
   );
 
@@ -78,7 +81,7 @@ export const Atofficechange = () => {
   };
 
 
-  const baseurl = "http://127.0.0.1:8080";
+  let baseurl = "http://127.0.0.1:8080";
 
   useEffect(() => {
     const username = localStorage.getItem('T-lab_username');

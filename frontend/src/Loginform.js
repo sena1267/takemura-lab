@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import qs from 'qs';
 
-const Loginform = () => {
+const Loginform = ({ baseurl }) => {
     //ユーザー情報を格納するオブジェクトを生成する
     const initialValues = { username: "", password: "" };
     //フォームに入力された値を格納する状態変数を準備する
@@ -22,7 +22,7 @@ const Loginform = () => {
     //ログイン情報をサーバーに送信し、アクセストークンを取得する関数
     async function login(username, password) {
         try {
-            const response = await axios.post('http://127.0.0.1:8080/token', qs.stringify({
+            const response = await axios.post(`${baseurl}/token`, qs.stringify({
                 "username": username,
                 "password": password,
             }), {
@@ -46,7 +46,7 @@ const Loginform = () => {
 
     async function getUserId(username) {
         try {
-            const response = await axios.get('http://127.0.0.1:8080/user/');
+            const response = await axios.get(`${baseurl}/user/`);
             const users = response.data;
 
             const user = users.find(user => user.name === username);
