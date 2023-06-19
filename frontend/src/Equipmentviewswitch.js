@@ -31,8 +31,8 @@ const Equipmentviewswitch = ({ switchview, user_id, baseurl, setswitchview }) =>
     };
 
     const postEquipmentdata = async (values) => {
-        if (values.bihinmei && values.cost && values.buyer) {
-            const postdata = { "name": values.bihinmei, "price": parseInt(values.cost), "buyer_id": parseInt(values.buyer), "bought_date": state.curDT };
+        if (values.bihinmei && values.cost) {
+            const postdata = { "name": values.bihinmei, "price": parseInt(values.cost), "buyer_id": parseInt(user_id), "bought_date": state.curDT };
             console.log(postdata);
             console.log(`${baseurl}/equipment/`);
             axios.post(`${baseurl}/equipment/`, postdata).then((response) => {
@@ -70,7 +70,6 @@ const Equipmentviewswitch = ({ switchview, user_id, baseurl, setswitchview }) =>
                     <h3 className='text-primary'>備品追加フォーム</h3>
                     <input type='text' placeholder='備品名' name='bihinmei' required onChange={(e) => handleChange(e)}></input>
                     <input type='number' placeholder='コスト' name='cost' required onChange={(e) => handleChange(e)}></input>
-                    <input type='number' placeholder='購入者' name='buyer' required onChange={(e) => handleChange(e)}></input>
                     <p className='formmessage'>{message}</p>
                     <button className="contentbutton" onClick={(e) => handleSubmit(e)}>add</button>
                 </form>
