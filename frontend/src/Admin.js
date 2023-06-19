@@ -1,10 +1,14 @@
 import React from "react";
 import axios from 'axios';
 import MembersinAdmin from "./MembersinAdmin";
+import { useState } from 'react';
 
 const Admin = ({ baseurl }) => {
+    const [update, setUpdate] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const updatetarget = async () => {
+        setIsLoading(true);
         try {
             const usersResponse = await axios.get(`${baseurl}/user`);
             const users = usersResponse.data;
@@ -14,24 +18,33 @@ const Admin = ({ baseurl }) => {
                     await axios.post(`${baseurl}/user/update/${user.id}`, updatedUser);
                 }
             }
+            setUpdate(prevState => !prevState);
         } catch (error) {
             console.error(`Error updating targets: ${error}`);
         }
+        setIsLoading(false);
     };
 
     const resetreset = async () => {
+        setIsLoading(true);
         try {
             const usersResponse = await axios.get(`${baseurl}/user`);
             const users = usersResponse.data;
             for (const user of users) {
-                const updatedUser = { ...user, target: user.target - 1 };
-                await axios.post(`${baseurl}/user/update/${user.id}`, updatedUser);
+                if (user.id != 1) {
+                    const updatedUser = { ...user, target: user.target - 1 };
+                    await axios.post(`${baseurl}/user/update/${user.id}`, updatedUser);
+                }
             }
+            setUpdate(prevState => !prevState);
         } catch (error) {
             console.error(`Error updating targets: ${error}`);
         }
+        setIsLoading(false);
     }
-
+    if (isLoading) {
+        return <div style={{ backgroundColor: 'white', height: '100vh', width: '100vw' }} />;
+    }
     return (
         <>
             <div className="container-fluid">
@@ -48,7 +61,7 @@ const Admin = ({ baseurl }) => {
                     {/* <!-- Content Column --> */}
                     <div className="col-lg-6 mb-4">
 
-                        <MembersinAdmin baseurl={baseurl} />
+                        <MembersinAdmin baseurl={baseurl} update={update} />
 
                     </div>
                     {/* <!-- Content Column --> */}
@@ -66,7 +79,7 @@ const Admin = ({ baseurl }) => {
                                 </a>
                             </div>
                             <div className="card-body">
-                                <a className="btn btn-danger btn-icon-split" onClick={updatetarget}>
+                                <a className="btn btn-danger btn-icon-split" onClick={resetreset}>
                                     <span className="icon text-white-50">
                                         <i className="fas fa-check"></i>
                                     </span>

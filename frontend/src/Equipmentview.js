@@ -14,29 +14,35 @@ const Equipmentview = ({ user_id, baseurl, monthpay }) => {
     const [recieveallmoney, setRecieveallmoney] = useState(0);
     const [totalcost, setTotalcost] = useState(null);
     const [remaining, setremaining] = useState(0);
+    const [target, setTarget] = useState(0);
 
     useEffect(() => {
-        const counter = 0;
         const fetchData = async () => {
             try {
+                console.log("1");
                 const response = await axios.get(`${baseurl}/user/`);
                 const users = response.data;
                 let tempRecieveallmoney = recieveallmoney;
                 let tempPayduty = 0;
+                let tempTarget = 0;
                 for (const user of users) {
                     tempRecieveallmoney += user.current * monthpay;
-                    if (user.id === user_id) {
+                    if (user.id === Number(user_id)) {
+                        console.log('3');
+                        console.log('monthpay' + monthpay);
                         tempPayduty = (user.target - user.current) * monthpay;
+                        tempTarget = user.target;
                     }
                 }
                 setRecieveallmoney(tempRecieveallmoney);
                 setPayduty(tempPayduty);
+                setTarget(tempTarget);
             } catch (error) {
                 console.error(`Error fetching data: ${error}`);
             }
         };
         fetchData();
-    }, [user_id, baseurl]);
+    }, []);
 
     useEffect(() => {
         const calctotal = async () => {
@@ -54,7 +60,7 @@ const Equipmentview = ({ user_id, baseurl, monthpay }) => {
             }
         };
         calctotal();
-    }, [baseurl]);
+    }, []);
 
     const remainingcalc = () => {
         setremaining(recieveallmoney - totalcost);
@@ -78,7 +84,6 @@ const Equipmentview = ({ user_id, baseurl, monthpay }) => {
             setswitchlack(true);
         }
     }
-
     return (
         <>
             <div className="container-fluid">

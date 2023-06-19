@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import EachMemberinAdmin from "./EachMemberinAdmin";
 
-const MembersinAdmin = ({ baseurl }) => {
+const MembersinAdmin = ({ baseurl, update }) => {
     const [allmembersValues, setallmembersValues] = useState([]);
     const [changeview, setChangeView] = useState(0)
     let fetchallmember = `/user`;
@@ -19,7 +19,7 @@ const MembersinAdmin = ({ baseurl }) => {
             console.log("data: " + allmembersValues);
         };
         fetchAllMembers();
-    }, [changeview])
+    }, [update])
     return (
         <div className="row">
             {allmembersValues.map((member, index) =>
