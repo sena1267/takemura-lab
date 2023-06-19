@@ -59,7 +59,6 @@ const Home = () => {
               <p><Link to="/login" className="button" role="button">ログイン</Link></p>
             </div>
             <div className="image-area">
-              <img className="image" src="" alt='' />
             </div>
           </header>
         </div>
