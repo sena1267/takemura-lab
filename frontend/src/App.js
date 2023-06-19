@@ -50,13 +50,16 @@ const Home = () => {
         <div className="container text-center mt-5">
           <header>
             <div className="textarea">
+              <img src="/img/takemura-lab-logo_.png" alt="Logo" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+              <p>　</p>
               <h1 className="wow animate__animated animate__fadeInUp slow-animation">LabLink</h1>
-              <p>made by takemura lab</p>
-              <strong>　</strong>
+              <p>　</p>
+              <strong style={{ color: "black" }}>made by takemura lab</strong>
+              <p>　</p>
               <p><Link to="/login" className="button" role="button">ログイン</Link></p>
             </div>
             <div className="image-area">
-              <img className="image" src="./img/home_background1.jpg" alt='武村研究室のログイン画面の背景画像' />
+              <img className="image" src="" alt='武村研究室のログイン画面の背景画像' />
             </div>
           </header>
         </div>
