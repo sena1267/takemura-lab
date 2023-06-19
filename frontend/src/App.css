@@ -66,3 +66,37 @@ main section {
     height: 600px;
     padding: 30px;
 }
+
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes logo-fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.splash-screen img {
+    animation: logo-fade-in 2s ease-out;
+    max-width: 30%;
+}
+
+.slow-animation {
+    animation-duration: 2s !important;
+    /* or any duration you want */
+}

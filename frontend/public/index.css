@@ -1,0 +1,25 @@
+.start {
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9000;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.start p {
+    position: fixed;
+    /*left: 40%;
+        top: 50%;*/
+    transform: translate(-50%, -50%);
+    display: flex;
+    z-index: 9999;
+    width: 280px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

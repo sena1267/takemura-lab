@@ -5,7 +5,7 @@ import './App.css';
 import Loginform from "./Loginform"
 import Dashboardroot from "./Dashboardroot";
 import axios from 'axios';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
   return (
@@ -26,21 +26,41 @@ export default App;
 
 //ユーザーが最初にアクセスする画面です。
 const Home = () => {
+  const [isSplashScreenVisible, setIsSplashScreenVisible] = useState(true);
+  useEffect(() => {
+    // 3秒(3000ms)後にスプラッシュスクリーンを非表示にする
+    const timer = setTimeout(() => {
+      setIsSplashScreenVisible(false);
+    }, 2500);
+
+    // effectのクリーンアップ関数でタイマーをクリア
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <>
-      <div className="container text-center mt-5">
-        <header>
-          <div className="textarea">
-            <h1 className="wow animate__animated animate__fadeInUp">LabLink</h1>
-            <p>made by takemura lab</p>
-            <strong>　</strong>
-            <p><Link to="/login" className="button" role="button">ログイン</Link></p>
-          </div>
-          <div class="image-area">
-            <img class="image" src="./img/home_background1.jpg" alt='武村研究室のログイン画面の背景画像' />
-          </div>
-        </header>
-      </div>
+      {/* スプラッシュスクリーンの表示 */}
+      {isSplashScreenVisible && (
+        <div className="splash-screen">
+          <img src="/img/takemura-lab-logo.png" alt="Takemura Lab Logo" />
+        </div>
+      )}
+
+      {/* 本来のコンテンツの表示 */}
+      {!isSplashScreenVisible && (
+        <div className="container text-center mt-5">
+          <header>
+            <div className="textarea">
+              <h1 className="wow animate__animated animate__fadeInUp slow-animation">LabLink</h1>
+              <p>made by takemura lab</p>
+              <strong>　</strong>
+              <p><Link to="/login" className="button" role="button">ログイン</Link></p>
+            </div>
+            <div className="image-area">
+              <img className="image" src="./img/home_background1.jpg" alt='武村研究室のログイン画面の背景画像' />
+            </div>
+          </header>
+        </div>
+      )}
     </>
   );
 };
