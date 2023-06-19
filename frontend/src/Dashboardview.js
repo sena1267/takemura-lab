@@ -8,9 +8,11 @@ import Members from './Members.js';
 import { useState } from "react";
 import Informationswitch from './Informationswitch'
 import "./Equipmentlistcontent.css";
+import { useNavigate } from "react-router-dom";
 
 const Dashboardview = ({ user_id, baseurl }) => {
     const [switchview, setswitchview] = useState(true);
+    const navigate = useNavigate();
     const toggleswitchview = () => {
         if (switchview == true) {
             setswitchview(false);
@@ -18,6 +20,10 @@ const Dashboardview = ({ user_id, baseurl }) => {
             setswitchview(true);
         }
     };
+
+    const switchatoffice = () => {
+        navigate('/atofficechange/' + user_id)
+    }
     return (
         <>
             <div className="container-fluid">
@@ -31,6 +37,11 @@ const Dashboardview = ({ user_id, baseurl }) => {
 
                 {/* <!-- Content Row --> */}
                 <div className="row">
+                    <div className="card-body">
+                        <a className="btn btn-primary btn-icon-split" onClick={switchatoffice}>
+                            <span className="text">在室スイッチ</span>
+                        </a>
+                    </div>
 
                     {/* <!-- Content Column --> */}
                     <div className="col-lg-6 mb-4">
