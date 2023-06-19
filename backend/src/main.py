@@ -27,7 +27,7 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
 
 database.Base.metadata.create_all(bind=database.engine)
 
-app = FastAPI(docs_url=None)  # Disable default docs
+app = FastAPI() 
 
 app.include_router(auth.router)
 app.include_router(user.router)
@@ -44,3 +44,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.get("/docs", dependencies=[Depends(get_current_username)], include_in_schema=False)
+async def custom_docs():
+    return get_swagger_ui_html(openapi_url="/openapi.json", title="docs")
