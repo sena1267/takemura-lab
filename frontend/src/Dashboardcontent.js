@@ -4,7 +4,7 @@ import Dashboardview from "./Dashboardview";
 import Equipmentview from "./Equipmentview";
 import Admin from "./Admin";
 
-const Dashboardcontent = ({ isHome, isAdminView, user_id, baseurl }) => {
+const Dashboardcontent = ({ isHome, isAdminView, user_id, baseurl, monthpay }) => {
     if (isAdminView === false) {
         // もし受け取ったisHomeの値によって呼び出す関数を変更させる
         if (isHome === true) {
@@ -18,14 +18,14 @@ const Dashboardcontent = ({ isHome, isAdminView, user_id, baseurl }) => {
             return (
                 <>
                     {/* 備品管理画面の呼び出しを行う */}
-                    <Equipmentview user_id={user_id} baseurl={baseurl} />
+                    <Equipmentview user_id={user_id} baseurl={baseurl} monthpay={monthpay} />
                 </>
             );
         }
     } else {
         return (
             <>
-                <Admin baseurl={baseurl} />
+                <Admin baseurl={baseurl} monthpay={monthpay} />
             </>
         );
     }

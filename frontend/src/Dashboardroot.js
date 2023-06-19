@@ -10,7 +10,7 @@ import Tab from './Tab';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboardroot = ({ user_id }) => {
+const Dashboardroot = ({ user_id, baseurl }) => {
 
     const username = localStorage.getItem('T-lab_username');
 
@@ -26,7 +26,7 @@ const Dashboardroot = ({ user_id }) => {
     // 管理者ページの表示を管理する状態変数
     const [isAdminView, setisAdminView] = useState(false);
 
-    const baseurl = "http://127.0.0.1:8080";
+    let monthpay = 500;
 
 
     async function getUserId(username) {
@@ -139,7 +139,7 @@ const Dashboardroot = ({ user_id }) => {
 
                             </nav>
                             {/* ページのコンテンツ部分 */}
-                            <Dashboardcontent isHome={isHomeValues} isAdminView={isAdminView} user_id={user_id} baseurl={baseurl} />
+                            <Dashboardcontent isHome={isHomeValues} isAdminView={isAdminView} user_id={user_id} baseurl={baseurl} monthpay={monthpay} />
                         </div>
                     </div>
                 </div>

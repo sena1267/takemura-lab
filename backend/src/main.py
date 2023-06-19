@@ -1,7 +1,14 @@
 from database import database
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from routers import (user, equipment, equipment_lack, auth, information)
+from routers import (
+    user,
+    equipment,
+    equipment_lack,
+    equipment_history,
+    auth,
+    information
+)
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import get_swagger_ui_html
 
@@ -26,6 +33,7 @@ app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(equipment.router)
 app.include_router(equipment_lack.router)
+app.include_router(equipment_history.router)
 app.include_router(information.router)
 
 # CORSを回避する
@@ -36,7 +44,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
-
-@app.get("/docs", dependencies=[Depends(get_current_username)], include_in_schema=False)
-async def get_documentation():
-    return get_swagger_ui_html(openapi_url="/openapi.json", title=app.title)

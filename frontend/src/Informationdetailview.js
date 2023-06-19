@@ -41,9 +41,21 @@ const Informationdetailview = ({ user_id, baseurl, setisdetailvalue, setdetailev
                     </tr>
                 </tbody>
             </table>
-            <div className="flexbox">
-                <button type="button" className="btn btn-primary listbutton" onClick={switchisdetailValue}>list</button>
-                <button type="button" className="btn btn-danger deletebutton" onClick={deletedata}>delete</button>
+            <div className="card-body">
+                <a className="btn btn-success btn-icon-split" onClick={switchisdetailValue}>
+                    <span className="icon text-white-50">
+                        <i className="fas fa-solid fa-list"></i>
+                    </span>
+                    <span className="text">リストに戻る</span>
+                </a>
+            </div>
+            <div className="card-body">
+                <a className="btn btn-danger btn-icon-split" onClick={deletedata}>
+                    <span className="icon text-white-50">
+                        <i className="fas fa-trash"></i>
+                    </span>
+                    <span className="text">削除</span>
+                </a>
             </div>
         </>
     );
