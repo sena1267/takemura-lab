@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpdate }) => {
+const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpdate, setswitchview }) => {
     const update = () => {
         const updatedata = {
             'name': details.name,
@@ -14,7 +14,8 @@ const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpd
         }
         axios.post(baseurl + '/user/update/' + details.id, updatedata).then(res => {
             setChangeView(changeview + 1);
-            setUpdate(setUpdate(prevState => !prevState));
+            setUpdate(prevState => !prevState);
+            setswitchview(prevState => !prevState);
         })
     }
 
@@ -24,11 +25,13 @@ const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpd
             <div className="col-lg-6 mb-4">
                 <div className="card bg-secondary text-white shadow">
                     <div className="card-body">
-                        '{details.name} target: {details.target} current: {details.current}' 
+                        {details.name}<br />
+                        target: {details.target}<br />
+                        current: {details.current}
                         <div className="text-white-50 small">completed</div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     } else {
         return (
@@ -36,7 +39,9 @@ const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpd
                 <a onClick={update}>
                     <div className="card bg-danger text-white shadow">
                         <div className="card-body">
-                            {details.name}
+                            {details.name}<br />
+                            target: {details.target}<br />
+                            current: {details.current}
                             <div className="text-white-50 small">not payed</div>
                         </div>
                     </div>
