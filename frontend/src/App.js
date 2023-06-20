@@ -24,49 +24,43 @@ const App = () => {
 //Appをエクスポートします。
 export default App;
 
-//ユーザーが最初にアクセスする画面です。
 const Home = () => {
   const [isSplashScreenVisible, setIsSplashScreenVisible] = useState(true);
   useEffect(() => {
-    // 3秒(3000ms)後にスプラッシュスクリーンを非表示にする
     const timer = setTimeout(() => {
       setIsSplashScreenVisible(false);
     }, 2500);
 
-    // effectのクリーンアップ関数でタイマーをクリア
     return () => clearTimeout(timer);
   }, []);
+
   return (
     <>
-      {/* スプラッシュスクリーンの表示 */}
       {isSplashScreenVisible && (
         <div className="splash-screen">
-          <img src="/img/takemura-lab-logo.png" alt="武村研究室のロゴ(logo of takemura lab)" />
+          <img src="/img/takemura-lab-logo.png" alt="武村研究室のロゴ" />
         </div>
       )}
 
-      {/* 本来のコンテンツの表示 */}
       {!isSplashScreenVisible && (
         <div className="container text-center mt-5">
           <header>
             <div className="textarea">
-              <img src="/img/takemura-lab-logo_.png" alt="武村研究室のロゴ(logo of takemura lab)" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+              <img className='wow animate__animated animate__fadeInUp slow-animation' src="/img/takemura-lab-logo_.png" alt="武村研究室のロゴ" style={{ maxHeight: '100%', maxWidth: '100%' }} />
               <p>　</p>
-              <h1 className="wow animate__animated animate__fadeInUp slow-animation">LabLink</h1>
+              <h1>LabLink</h1>
               <p>　</p>
               <strong style={{ color: "black" }}>made by takemura lab</strong>
               <p>　</p>
               <p><Link to="/login" className="button" role="button">ログイン</Link></p>
             </div>
-            <div className="image-area">
-            </div>
+            <div className="image-area"></div>
           </header>
         </div>
       )}
     </>
   );
 };
-
 //ユーザーログインのフォームです。
 const Login = () => {
   let baseurl = "http://127.0.0.1:8080";

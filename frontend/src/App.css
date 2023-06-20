@@ -107,3 +107,24 @@ strong {
     margin-bottom: 10%;
     /* adjust this value as needed */
 }
+
+.textarea h1,
+.textarea strong,
+.textarea p {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: item-fade-in 1s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes item-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
