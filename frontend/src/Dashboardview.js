@@ -62,7 +62,7 @@ const Dashboardview = ({ user_id, baseurl }) => {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <div className="scroll">
+                                <div className="chart-area scroll">
                                     <Informationswitch switchview={switchview} setswitchview={setswitchview} user_id={user_id} baseurl={baseurl} />
                                 </div>
                             </div>
