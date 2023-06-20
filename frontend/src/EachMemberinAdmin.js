@@ -24,7 +24,7 @@ const EachMemberinAdmin = ({ details, baseurl, setChangeView, changeview, setUpd
             <div className="col-lg-6 mb-4">
                 <div className="card bg-secondary text-white shadow">
                     <div className="card-body">
-                        {details.name}
+                        '{details.name} target: {details.target} current: {details.current}' 
                         <div className="text-white-50 small">completed</div>
                     </div>
                 </div>
