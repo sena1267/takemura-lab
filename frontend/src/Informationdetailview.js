@@ -22,9 +22,9 @@ const Informationdetailview = ({ user_id, baseurl, setisdetailvalue, setdetailev
     useEffect(() => {
         async function getusername() {
             try {
-                await axios.get(`${baseurl}/user/get_user/${detailvalue['id']}`).then(res => {
-                    console.log(res.data['name']);
-                    setusername(res.data['name']);
+                await axios.get(`${baseurl}/user/get_user/${detailvalue['created_by']}`).then(res => {
+                    console.log(res.data.name);
+                    setusername(res.data.name);
                 })
             } catch (error) {
                 console.error(error);
